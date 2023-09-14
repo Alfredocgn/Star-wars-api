@@ -1,10 +1,11 @@
 const {Router} = require("express");
 const controllers = require('../controllers');
+const middelwares = require('../middlewares')
 
 const router = Router();
 
-router.get('/',controllers.getCharacters);
+router.get('/characters',controllers.getCharacters);
 
-router.post('/', controllers.createCharacter)
+router.post('/characters',middelwares.characterValidation ,controllers.createCharacter)
 
 module.exports = router;

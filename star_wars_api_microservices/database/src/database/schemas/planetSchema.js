@@ -1,6 +1,6 @@
-const Schema = require('mongoose');
+const {Schema} = require('mongoose');
 
-const planetSchema = {
+const planetSchema = new Schema ({
   _id: String,
   name: String,
   rotation_period: String,
@@ -10,9 +10,9 @@ const planetSchema = {
   gravity: String,
   terrain: String,
   surface_water: String,
-  res_idents: [{type:String,ref:"Character"}],
-  films: [{type:String, ref:"Film"}]
+  res_idents: [{type: String ,ref: "Character"}],
+  films: [{type: String, ref: "Film"}],
 
 }
-
-module.exports = { planetSchema }
+)
+module.exports = planetSchema;

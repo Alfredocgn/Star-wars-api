@@ -1,4 +1,4 @@
-const Schema = require('mongoose');
+const {Schema} = require('mongoose');
 
 
 const characterSchema = new Schema({
@@ -11,9 +11,15 @@ const characterSchema = new Schema({
   eye_color: String,
   birth_year: String,
   gender: String,
-  homeworld: {type:String, ref: "Planet"},
-  films: [{type:String, ref:"Film"}]
+  homeworld: {type: String, ref: "Planet"},
+  films: [{type: String, ref: "Film"}],
 
 });
+
+characterSchema.statics.list= async function () {
+  return await this.find()
+  .populate("homeworld",["_id","name"])
+  .populate("films",["_id","title"])
+}
 
 module.exports = characterSchema;
